@@ -34,13 +34,13 @@ namespace Gerrit
             InitializeComplete();
 
             Publish.Image = Images.Push;
-            PublishType.Items.AddRange(new object[]
+            _NO_TRANSLATE_PublishType.Items.AddRange(new object[]
             {
                 new KeyValuePair<string, string>(_publishTypeReview.Text, ""),
-                new KeyValuePair<string, string>(_publishTypeWip.Text, "%wip"),
-                new KeyValuePair<string, string>(_publishTypePrivate.Text, "%private"),
+                new KeyValuePair<string, string>(_publishTypeWip.Text, "wip"),
+                new KeyValuePair<string, string>(_publishTypePrivate.Text, "private"),
             });
-            PublishType.SelectedIndex = 0;
+            _NO_TRANSLATE_PublishType.SelectedIndex = 0;
         }
 
         private void PublishClick(object sender, EventArgs e)
@@ -79,31 +79,26 @@ namespace Gerrit
 
             GerritUtil.StartAgent(owner, Module, _NO_TRANSLATE_Remotes.Text);
 
-            var pushCommand = UICommands.CreateRemoteCommand();
-
-            string targetBranch = "refs/for/" + branch;
-
-            string publishType = ((KeyValuePair<string, string>)PublishType.SelectedItem).Value;
-            targetBranch += publishType;
+            List<string> additionalOptions = new List<string>();
+            additionalOptions.Add(((KeyValuePair<string, string>)_NO_TRANSLATE_PublishType.SelectedItem).Value);
 
             string reviewers = _NO_TRANSLATE_Reviewers.Text.Trim();
             if (!string.IsNullOrEmpty(reviewers))
             {
-                string formattedReviewers = string.Join(",", reviewers.Split(' ')
-                                                                      .Where(r => !string.IsNullOrEmpty(r))
-                                                                      .Select(r => "r=" + r));
-                if (!formattedReviewers.IsNullOrEmpty())
-                {
-                    targetBranch += "%" + formattedReviewers;
-                }
+                additionalOptions.AddRange(reviewers.Split(new[] { ' ', ',', ';', '|' })
+                                                    .Where(r => !string.IsNullOrEmpty(r))
+                                                    .Select(r => "r=" + r));
             }
 
             string topic = _NO_TRANSLATE_Topic.Text.Trim();
             if (!string.IsNullOrEmpty(topic))
             {
-                targetBranch += "%topic=" + topic;
+                additionalOptions.Add("topic=" + topic);
             }
 
+            var pushCommand = UICommands.CreateRemoteCommand();
+            string targetBranch = "refs/for/" + branch;
+            targetBranch += string.Join(",", additionalOptions.Where(r => !string.IsNullOrEmpty(r)));
             pushCommand.CommandText = PushCmd(
                 _NO_TRANSLATE_Remotes.Text,
                 targetBranch);
