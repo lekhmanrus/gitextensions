@@ -40,16 +40,20 @@
             this.labelReviewers = new System.Windows.Forms.Label();
             this._NO_TRANSLATE_PublishType = new System.Windows.Forms.ComboBox();
             this.labelPublishType = new System.Windows.Forms.Label();
+            this._NO_TRANSLATE_Cc = new System.Windows.Forms.TextBox();
+            this.labelCc = new System.Windows.Forms.Label();
+            this._NO_TRANSLATE_Hashtag = new System.Windows.Forms.TextBox();
+            this.labelHashtag = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Publish
             // 
             this.Publish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Publish.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Publish.Location = new System.Drawing.Point(531, 127);
+            this.Publish.Location = new System.Drawing.Point(531, 153);
             this.Publish.Name = "Publish";
             this.Publish.Size = new System.Drawing.Size(101, 25);
-            this.Publish.TabIndex = 11;
+            this.Publish.TabIndex = 15;
             this.Publish.Text = "&Publish";
             this.Publish.UseVisualStyleBackColor = true;
             this.Publish.Click += new System.EventHandler(this.PublishClick);
@@ -144,29 +148,69 @@
             // 
             this._NO_TRANSLATE_PublishType.DisplayMember = "Key";
             this._NO_TRANSLATE_PublishType.FormattingEnabled = true;
-            this._NO_TRANSLATE_PublishType.Location = new System.Drawing.Point(85, 127);
+            this._NO_TRANSLATE_PublishType.Location = new System.Drawing.Point(85, 153);
             this._NO_TRANSLATE_PublishType.Margin = new System.Windows.Forms.Padding(4);
             this._NO_TRANSLATE_PublishType.Name = "_NO_TRANSLATE_PublishType";
             this._NO_TRANSLATE_PublishType.Size = new System.Drawing.Size(121, 21);
-            this._NO_TRANSLATE_PublishType.TabIndex = 10;
+            this._NO_TRANSLATE_PublishType.TabIndex = 12;
             this._NO_TRANSLATE_PublishType.ValueMember = "Value";
             // 
             // labelPublishType
             // 
             this.labelPublishType.AutoSize = true;
-            this.labelPublishType.Location = new System.Drawing.Point(12, 130);
+            this.labelPublishType.Location = new System.Drawing.Point(12, 156);
             this.labelPublishType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPublishType.Name = "labelPublishType";
             this.labelPublishType.Size = new System.Drawing.Size(71, 13);
-            this.labelPublishType.TabIndex = 9;
+            this.labelPublishType.TabIndex = 11;
             this.labelPublishType.Text = "Publish Type:";
+            // 
+            // _NO_TRANSLATE_Cc
+            // 
+            this._NO_TRANSLATE_Cc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._NO_TRANSLATE_Cc.Location = new System.Drawing.Point(85, 126);
+            this._NO_TRANSLATE_Cc.Name = "_NO_TRANSLATE_Cc";
+            this._NO_TRANSLATE_Cc.Size = new System.Drawing.Size(547, 20);
+            this._NO_TRANSLATE_Cc.TabIndex = 10;
+            // 
+            // labelCc
+            // 
+            this.labelCc.AutoSize = true;
+            this.labelCc.Location = new System.Drawing.Point(12, 129);
+            this.labelCc.Name = "labelCc";
+            this.labelCc.Size = new System.Drawing.Size(24, 13);
+            this.labelCc.TabIndex = 9;
+            this.labelCc.Text = "CC:";
+            // 
+            // _NO_TRANSLATE_Hashtag
+            // 
+            this._NO_TRANSLATE_Hashtag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._NO_TRANSLATE_Hashtag.Location = new System.Drawing.Point(304, 153);
+            this._NO_TRANSLATE_Hashtag.Name = "_NO_TRANSLATE_Hashtag";
+            this._NO_TRANSLATE_Hashtag.Size = new System.Drawing.Size(121, 20);
+            this._NO_TRANSLATE_Hashtag.TabIndex = 14;
+            // 
+            // labelHashtag
+            // 
+            this.labelHashtag.AutoSize = true;
+            this.labelHashtag.Location = new System.Drawing.Point(248, 156);
+            this.labelHashtag.Name = "labelHashtag";
+            this.labelHashtag.Size = new System.Drawing.Size(50, 13);
+            this.labelHashtag.TabIndex = 13;
+            this.labelHashtag.Text = "Hashtag:";
             // 
             // FormGerritPublish
             // 
             this.AcceptButton = this.Publish;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(644, 164);
+            this.ClientSize = new System.Drawing.Size(644, 190);
+            this.Controls.Add(this._NO_TRANSLATE_Hashtag);
+            this.Controls.Add(this.labelHashtag);
+            this.Controls.Add(this._NO_TRANSLATE_Cc);
+            this.Controls.Add(this.labelCc);
             this.Controls.Add(this.labelPublishType);
             this.Controls.Add(this._NO_TRANSLATE_PublishType);
             this.Controls.Add(this._NO_TRANSLATE_Reviewers);
@@ -205,5 +249,9 @@
         private System.Windows.Forms.Label labelReviewers;
         private System.Windows.Forms.ComboBox _NO_TRANSLATE_PublishType;
         private System.Windows.Forms.Label labelPublishType;
+        private System.Windows.Forms.TextBox _NO_TRANSLATE_Cc;
+        private System.Windows.Forms.Label labelCc;
+        private System.Windows.Forms.TextBox _NO_TRANSLATE_Hashtag;
+        private System.Windows.Forms.Label labelHashtag;
     }
 }

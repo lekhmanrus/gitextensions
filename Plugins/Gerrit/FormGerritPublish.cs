@@ -90,10 +90,24 @@ namespace Gerrit
                                                     .Select(r => "r=" + r));
             }
 
+            string cc = _NO_TRANSLATE_Cc.Text.Trim();
+            if (!string.IsNullOrEmpty(cc))
+            {
+                additionalOptions.AddRange(cc.Split(new[] { ' ', ',', ';', '|' })
+                                             .Where(r => !string.IsNullOrEmpty(r))
+                                             .Select(r => "cc=" + r));
+            }
+
             string topic = _NO_TRANSLATE_Topic.Text.Trim();
             if (!string.IsNullOrEmpty(topic))
             {
                 additionalOptions.Add("topic=" + topic);
+            }
+
+            string hashtag = _NO_TRANSLATE_Hashtag.Text.Trim();
+            if (!string.IsNullOrEmpty(hashtag))
+            {
+                additionalOptions.Add("hashtag=" + hashtag);
             }
 
             additionalOptions = additionalOptions.Where(r => !string.IsNullOrEmpty(r)).ToList();
